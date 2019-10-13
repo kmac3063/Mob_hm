@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App1.MainPage">
+
+    <StackLayout Padding="12, 12, 12, 12">
+        <Button x:Name="Button_1"
+                Clicked="Button_1_clicked"
+                Text="0"
+                FontAttributes="Bold"
+                BorderWidth="1"
+                BorderColor="Violet"/>
+        <Button x:Name="Button_2"
+                Clicked="Button_2_clicked"
+                Text="Random color"/>
+
+    </StackLayout>
+
+</ContentPage>
