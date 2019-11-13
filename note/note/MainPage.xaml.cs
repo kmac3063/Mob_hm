@@ -21,19 +21,36 @@ namespace note
         private void Button_Clicked_1(object sender, EventArgs e)
         {
             var page1 = new Page1();
-
+            
             page1.Disappearing += (a, b) =>
             {
                 if (page1.text != null)
                 {
                     Label label = new Label();
-                    label.Text = page1.text;
+                    label.Text = page1.text.Split('\n')[0];
                     label.BackgroundColor = Color.Gray;
+
+                    var tap = new TapGestureRecognizer();
+                    tap.Tapped += (a1, b1) =>
+                    {
+                        var editor = new Page1(page1.text);
+
+                        editor.Disappearing += (a2, b2) =>
+                        {
+                            page1.text = editor.text;
+                            label.Text = editor.text.Split('\n')[0];
+                        };
+
+                        Navigation.PushAsync(editor);
+                    };
+
+                    label.GestureRecognizers.Add(tap);
                     StackLayout1.Children.Add(label);
                 }
             };
             
             Navigation.PushAsync(page1);
         }
+
     }
 }

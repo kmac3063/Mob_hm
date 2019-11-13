@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Water.BucketPage">
+
+    <Grid>
+        <!-- Place new controls here -->
+        <StackLayout x:Name="Bucket_St_Lt">
+            <Label x:Name="header"
+                   VerticalOptions="Start"
+                   BackgroundColor="#13828B"
+                   HeightRequest="50"
+                   Text=" Корзина"
+                   TextColor="Black"
+                   FontSize="30"/>
+        </StackLayout>
+        <Button Clicked="Add_Button_Clicked"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                Margin="10"
+                BorderColor="#4A6088"
+                BorderWidth="1"
+                Text="+"
+                TextColor="White"
+                BackgroundColor="#5664A8"
+                WidthRequest="50"
+                HeightRequest="50"
+                CornerRadius="50"/>
+        <Button Clicked="Buy_Button_Clicked"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Margin="10"
+                BorderColor="#4A6088"
+                BorderWidth="1"
+                Text="Buy"
+                TextColor="Black"
+                FontSize="18"
+                WidthRequest="150"
+                HeightRequest="50"
+                CornerRadius="20"/>
+    </Grid>
+
+</ContentPage>

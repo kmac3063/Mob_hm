@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29403.142
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Water.Android", "Water.Android\Water.Android.csproj", "{79A8AE4C-D955-4E32-ACD5-4D6FC15A0163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Water", "Water\Water.csproj", "{B2C55E36-F1E8-4859-AA3C-2B7589345C51}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79A8AE4C-D955-4E32-ACD5-4D6FC15A0163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79A8AE4C-D955-4E32-ACD5-4D6FC15A0163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79A8AE4C-D955-4E32-ACD5-4D6FC15A0163}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{79A8AE4C-D955-4E32-ACD5-4D6FC15A0163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79A8AE4C-D955-4E32-ACD5-4D6FC15A0163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79A8AE4C-D955-4E32-ACD5-4D6FC15A0163}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B2C55E36-F1E8-4859-AA3C-2B7589345C51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2C55E36-F1E8-4859-AA3C-2B7589345C51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2C55E36-F1E8-4859-AA3C-2B7589345C51}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B2C55E36-F1E8-4859-AA3C-2B7589345C51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2C55E36-F1E8-4859-AA3C-2B7589345C51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2C55E36-F1E8-4859-AA3C-2B7589345C51}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE106B01-58E3-4E1B-9539-9C5F442D2EF5}
+	EndGlobalSection
+EndGlobal

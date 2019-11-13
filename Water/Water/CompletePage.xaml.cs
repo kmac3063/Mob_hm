@@ -7,27 +7,19 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace note
+namespace Water
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : ContentPage
+    public partial class CompletePage : ContentPage
     {
-        public Page1()
+        public CompletePage(string msg = "")
         {
             InitializeComponent();
+            message_label.Text = msg;
         }
 
-        public Page1(string S)
+        private void Back_Button_Clicked(object sender, EventArgs e)
         {
-            InitializeComponent();
-            TextHolder.Text = text = S;
-        }
-
-        public string text = null;
-
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
-            text = TextHolder.Text;
             Navigation.PopAsync();
         }
     }

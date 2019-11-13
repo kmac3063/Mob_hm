@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Water.MainPage">
+    <ContentPage.Content>
+        <Grid>
+            <Image Source="Resources/drawable/bottle.jpg"/>
+            <Frame VerticalOptions ="End" 
+                BackgroundColor="#31515F">
+                <StackLayout x:Name="stackLayout1"
+                    VerticalOptions="End" 
+                    BackgroundColor="#256F7B" 
+                    Orientation="Horizontal"
+                    Padding="0, 0"
+                    HorizontalOptions="Center">
+
+                    <Button Text="Add" WidthRequest="80"
+                            Clicked="Add_Button_Clicked"/>
+                    <Button x:Name ="Bucket" Text="Bucket(0)" WidthRequest="110"
+                            Clicked="Bucket_Button_Clicked"
+                            Margin="20, 0, 20, 0"/>
+                    <Button Text="Buy" WidthRequest="80" 
+                            Clicked="Buy_Button_Clicked"/>
+
+                </StackLayout>
+                
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

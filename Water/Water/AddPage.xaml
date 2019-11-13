@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Water.AddPage">
+    <ContentPage.Content>
+        <Grid x:Name="MyGrid">
+            <Label x:Name="header"
+                   VerticalOptions="Start"
+                   BackgroundColor="#13828B"
+                   HeightRequest="50"
+                   Text=" Add"
+                   TextColor="White"
+                   FontSize="30"/>
+
+            <StackLayout x:Name="Item_St_Lt"
+                Padding="0, 55, 0, 0">
+                <Picker x:Name="picker_product" 
+                        SelectedIndexChanged="picker_product_SelectedIndexChanged"
+                        VerticalOptions="Start">
+                    <Picker.Items>
+                        <x:String>Water</x:String>
+                        <x:String>Juice</x:String>
+                        <x:String>Tea</x:String>
+                        <x:String>Чифир</x:String>
+                    </Picker.Items>
+                    <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+            </StackLayout>
+            <Button HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    WidthRequest="60"
+                    Text="Back"
+                    Clicked="Back_Button_Clicked"/>
+            <Button VerticalOptions="End"
+                    HorizontalOptions="End"
+                    Text="Add"
+                    Margin="10"
+                    Clicked="AddToBucket_Button_CLicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
