@@ -13,16 +13,18 @@ namespace Water
     [DesignTimeVisible(false)]
     public partial class BucketPage : ContentPage
     {
-        public BucketPage(List<string> products)
+        public List<string> products = new List<string>();
+        public BucketPage(List<string> products_)
         {
             InitializeComponent();
 
+            products = products_;
             foreach (var name in products){
                 var frame = new Frame
                 {
                     BorderColor = Color.IndianRed,
                     CornerRadius = 20,
-                    HorizontalOptions = LayoutOptions.Center,
+                    HorizontalOptions = LayoutOptions.Center,// TO DO
                     Content = new Label
                     {
                         Text = name,
@@ -34,7 +36,6 @@ namespace Water
             }
         }
 
-        //List<string> products = new List<string>();
         private void Add_Button_Clicked(object sender, EventArgs e)
         {
             var addPage = new AddPage();
@@ -45,8 +46,10 @@ namespace Water
                 {
                     Bucket_St_Lt.Children.RemoveAt(Bucket_St_Lt.Children.Count - 1);
                 }
+                
+                products.AddRange(addPage.products);
 
-                foreach (var name in addPage.products)
+                foreach (var name in products)
                 {
                     var frame = new Frame
                     {
@@ -76,6 +79,8 @@ namespace Water
 
             var compl_page = new CompletePage("Покупка совершена! Спасибо!");
             Navigation.PushAsync(compl_page);
+
+            products.Clear();
         }
         
     }

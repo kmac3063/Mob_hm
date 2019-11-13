@@ -41,13 +41,28 @@ namespace Water
         private void Bucket_Button_Clicked(object sender, EventArgs e)
         {
             var bucketPage = new BucketPage(products);
+            bucketPage.Disappearing += (a, b) =>
+            {
+                products = bucketPage.products;
+                Bucket.Text = "Bucket(" + products.Count + ")";
+            };
+
             Navigation.PushAsync(bucketPage);
         }
         
         private void Buy_Button_Clicked(object sender, EventArgs e)
         {
-            var buyPage = new BuyPage();
-            Navigation.PushAsync(buyPage);
+            if (products.Count > 0)
+            {
+                var complPage = new CompletePage("Покупка совершена, отлично!");
+                Navigation.PushAsync(complPage);
+                products.Clear();
+            }
+            else
+            {
+                var complPage = new CompletePage("Так корзина ведь пуста!");
+                Navigation.PushAsync(complPage);            
+            }
         }
 
         

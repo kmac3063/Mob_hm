@@ -32,7 +32,7 @@ namespace Water
             var id_img = picker_product.SelectedIndex;
             switch (id_img)
             {
-                case(0)://вода сок чай чифир
+                case(0):
                     image.Source = "Resources/drawable/bottle_of_water.jpg";
                     break;
                 case (1):
