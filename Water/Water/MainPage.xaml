@@ -14,7 +14,6 @@
                     VerticalOptions="End" 
                     BackgroundColor="#256F7B" 
                     Orientation="Horizontal"
-                    Padding="0, 0"
                     HorizontalOptions="Center">
 
                     <Button Text="Add" WidthRequest="80"

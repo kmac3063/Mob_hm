@@ -52,17 +52,19 @@ namespace Water
         
         private void Buy_Button_Clicked(object sender, EventArgs e)
         {
+            CompletePage complPage;
             if (products.Count > 0)
             {
-                var complPage = new CompletePage("Покупка совершена, отлично!");
-                Navigation.PushAsync(complPage);
+                complPage = new CompletePage("Покупка совершена, отлично!");
                 products.Clear();
             }
             else
             {
-                var complPage = new CompletePage("Так корзина ведь пуста!");
-                Navigation.PushAsync(complPage);            
+                complPage = new CompletePage("Так корзина ведь пуста!");
             }
+            Navigation.PushAsync(complPage);
+            Bucket.Text = "Bucket(0)";
+
         }
 
         
