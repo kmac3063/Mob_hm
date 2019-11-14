@@ -17,13 +17,6 @@ namespace Water
             InitializeComponent();
         }
 
-
-        private void Home_Button_Clicked(object sender, EventArgs e)
-        {
-           /* var homePage = new homePage();
-            Navigation.PushAsync(addPage);*/
-        }
-
         List<string> products = new List<string>();
         private void Add_Button_Clicked(object sender, EventArgs e)
         {
@@ -31,7 +24,7 @@ namespace Water
 
             addPage.Disappearing += (a, b) =>
             {
-                products = addPage.products;
+                products.AddRange(addPage.products);
                 Bucket.Text = "Bucket(" + products.Count + ")";
             };
 

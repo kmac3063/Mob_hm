@@ -17,9 +17,6 @@
     <Compile Update="BucketPage.xaml.cs">
       <DependentUpon>BucketPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="BuyPage.xaml.cs">
-      <DependentUpon>BuyPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -30,9 +27,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="MainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="BuyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

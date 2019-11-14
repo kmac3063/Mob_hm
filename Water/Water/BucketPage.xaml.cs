@@ -31,6 +31,7 @@ namespace Water
             Random r = new Random();
             for (int i = 0; i < 4; i++)
             {
+                if (count[i] == 0) continue;
                 var frame = new Frame
                 {
                     BorderColor = Color.FromRgb(r.Next() % 256, r.Next() % 256, r.Next() % 256),
@@ -40,7 +41,7 @@ namespace Water
                     Content = new Label
                     {
                         FontSize = 20,
-                        Text = "xXx " + names[i] + " x " + count[i] + " xXx",
+                        Text = names[i] + " x " + count[i],
                         HorizontalOptions = LayoutOptions.Center
                     }
                 };
@@ -66,9 +67,9 @@ namespace Water
                     Bucket_St_Lt.Children.RemoveAt(Bucket_St_Lt.Children.Count - 1);
                 }
                 
-                products.AddRange(addPage.products);
+                products.AddRange(addPage.products); 
 
-                addToBucket(addPage.products, ref Bucket_St_Lt);
+                addToBucket(products, ref Bucket_St_Lt);
             };
 
             Navigation.PushAsync(addPage);
@@ -76,7 +77,7 @@ namespace Water
 
         private void Buy_Button_Clicked(object sender, EventArgs e)
         {
-            if (Bucket_St_Lt.Children.Count <= 1)
+            if (Bucket_St_Lt.Children.Count == 1)
             {
                 var pg = new CompletePage("Корзина ведь пуста!");
                 Navigation.PushAsync(pg);
