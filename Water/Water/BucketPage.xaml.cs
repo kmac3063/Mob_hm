@@ -62,14 +62,17 @@ namespace Water
 
             addPage.Disappearing += (a, b) =>
             {
-                while (Bucket_St_Lt.Children.Count > 1)
+                if (Navigation.NavigationStack.Last() == addPage)
                 {
-                    Bucket_St_Lt.Children.RemoveAt(Bucket_St_Lt.Children.Count - 1);
-                }
+                    while (Bucket_St_Lt.Children.Count > 1)
+                    {
+                        Bucket_St_Lt.Children.RemoveAt(Bucket_St_Lt.Children.Count - 1);
+                    }
                 
-                products.AddRange(addPage.products); 
+                    products.AddRange(addPage.products); 
 
-                addToBucket(products, ref Bucket_St_Lt);
+                    addToBucket(products, ref Bucket_St_Lt);
+                }
             };
 
             Navigation.PushAsync(addPage);
@@ -85,15 +88,11 @@ namespace Water
             }
 
 
+            products.Clear();
+            Navigation.PopAsync();
+
             var compl_page = new CompletePage("Покупка совершена! Спасибо!");
             Navigation.PushAsync(compl_page);
-
-            products.Clear();
-            
-            while (Bucket_St_Lt.Children.Count > 1)
-            {
-                Bucket_St_Lt.Children.RemoveAt(Bucket_St_Lt.Children.Count - 1);
-            }
         }
         
     }

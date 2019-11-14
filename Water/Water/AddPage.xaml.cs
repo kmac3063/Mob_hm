@@ -53,8 +53,6 @@ namespace Water
         {
             var prod_name = picker_product.Items[picker_product.SelectedIndex];
             products.Add(prod_name);
-            Console.WriteLine("Вы добавили " + prod_name);
-            Console.WriteLine(products);
             var compl_page = new CompletePage(prod_name + " успешно добавлен в корзину. Так держать!");
             Navigation.PushAsync(compl_page);
         }

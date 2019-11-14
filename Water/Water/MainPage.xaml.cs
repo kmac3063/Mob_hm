@@ -24,8 +24,11 @@ namespace Water
 
             addPage.Disappearing += (a, b) =>
             {
-                products.AddRange(addPage.products);
-                Bucket.Text = "Bucket(" + products.Count + ")";
+                if (Navigation.NavigationStack.Last() == addPage)
+                {
+                    products.AddRange(addPage.products);
+                    Bucket.Text = "Bucket(" + products.Count + ")";
+                }
             };
 
             Navigation.PushAsync(addPage);
