@@ -28,6 +28,18 @@
                     </Picker.Items>
                     <Picker.SelectedIndex>0</Picker.SelectedIndex>
                 </Picker>
+                <Image x:Name ="Product_Image" Source="Resources/drawable/bottle_of_water.jpg"/>
+                <Label x:Name="Stepper_Label"
+                       HorizontalOptions="Center"
+                       FontSize="20"
+                       TextColor="Black"
+                       Text="1"/>
+                <Stepper x:Name ="My_Stepper" 
+                         HorizontalOptions="Center"
+                         Minimum="1"
+                         Maximum="10"
+                         Increment="1"
+                         ValueChanged="Stepper_ValueChanged"/>
             </StackLayout>
             <Button HorizontalOptions="End"
                     VerticalOptions="Start"

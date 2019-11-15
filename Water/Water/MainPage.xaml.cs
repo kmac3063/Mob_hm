@@ -58,6 +58,7 @@ namespace Water
             {
                 complPage = new CompletePage("Так корзина ведь пуста!");
             }
+
             Navigation.PushAsync(complPage);
             Bucket.Text = "Bucket(0)";
 

@@ -16,8 +16,6 @@
                    Text=" Корзина"
                    TextColor="Black"
                    FontSize="30"/>
-
-
         </StackLayout>
         <Button Clicked="Add_Button_Clicked"
                 VerticalOptions="End"
