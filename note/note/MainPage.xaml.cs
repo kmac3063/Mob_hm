@@ -13,44 +13,146 @@ namespace note
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        public MainPage(List<string> nds)
         {
             InitializeComponent();
+            foreach (var s in nds)
+            {
+                if (s[0] == 1)
+                {
+                    addToLeftStackLayout(s.Substring(1));
+                }
+                else
+                {
+                    addToRightStackLayout(s.Substring(1));
+                }
+            }
+        }
+
+        public List<string> nodes = new List<string>();
+ 
+        private void addToLeftStackLayout(string str)
+        {
+            Frame frame = new Frame
+            {
+                BorderColor = Color.Red,
+                Margin = 10,
+                CornerRadius = 10,
+                BackgroundColor = Color.FromHex("#ECF8AF")
+            };
+
+            Label label = new Label
+            {
+                Text = str,
+                FontSize = 20,
+                TextColor = Color.Black
+            };
+
+            frame.Content = label;
+
+            var tap = new TapGestureRecognizer();
+            tap.Tapped += (a1, b1) =>
+            {
+                var editor = new Page1(label.Text);
+
+                editor.Disappearing += (a2, b2) =>
+                {
+                    label.Text = editor.text;
+                };
+
+                Navigation.PushAsync(editor);
+            };
+            label.GestureRecognizers.Add(tap);
+
+            var swipe = new SwipeGestureRecognizer();
+            swipe.Direction = SwipeDirection.Left;
+            swipe.Swiped += async (swipeSender, swipeEventArg) =>
+            {
+                if (await DisplayAlert("Confirm the deleting", "Are you sure?", "Yes!", "No"))
+                {
+                    leftStLt.Children.Remove(swipeSender as Frame);
+                    nodes.Remove(Convert.ToChar(1) + str);
+                }
+            };
+            frame.GestureRecognizers.Add(swipe);
+
+            leftStLt.Children.Add(frame);
+
+            nodes.Add(Convert.ToChar(1) + str);
+        }
+
+        private void addToRightStackLayout(string str)
+        {
+            Frame frame = new Frame
+            {
+                BorderColor = Color.Red,
+                Margin = 10,
+                CornerRadius = 10,
+                BackgroundColor = Color.FromHex("#ECF8AF")
+            };
+
+            Label label = new Label
+            {
+                Text = str,
+                FontSize = 20,
+                TextColor = Color.Black
+            };
+            frame.Content = label;
+
+            var tap = new TapGestureRecognizer();
+            tap.Tapped += (a1, b1) =>
+            {
+                var editor = new Page1(label.Text);
+
+                editor.Disappearing += (a2, b2) =>
+                {
+                    label.Text = editor.text;
+                    //TO DO
+                    //Удаляем из нодес старое, загружаем новое
+                    //Найти верный путь для открытия файлов.
+                };
+
+                Navigation.PushAsync(editor);
+            };
+            label.GestureRecognizers.Add(tap);
+            
+            var swipe = new SwipeGestureRecognizer();
+            swipe.Direction = SwipeDirection.Right;
+            swipe.Swiped += async (swipeSender, swipeEventArg) =>
+            {
+                if (await DisplayAlert("Confirm the deleting", "Are you sure?", "Yes!", "No"))
+                {
+                    rightStLt.Children.Remove(swipeSender as Frame);
+                    nodes.Remove(Convert.ToChar(2) + str);
+                }
+            };
+            frame.GestureRecognizers.Add(swipe);
+            
+            rightStLt.Children.Add(frame);
+
+            nodes.Add(Convert.ToChar(2) + str);
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
             var page1 = new Page1();
-            
+
             page1.Disappearing += (a, b) =>
             {
                 if (page1.text != null)
                 {
-                    Label label = new Label();
-                    label.Text = page1.text.Split('\n')[0];
-                    label.BackgroundColor = Color.Gray;
-
-                    var tap = new TapGestureRecognizer();
-                    tap.Tapped += (a1, b1) =>
+                    if (leftStLt.Height > rightStLt.Height)
                     {
-                        var editor = new Page1(page1.text);
-
-                        editor.Disappearing += (a2, b2) =>
-                        {
-                            page1.text = editor.text;
-                            label.Text = editor.text.Split('\n')[0];
-                        };
-
-                        Navigation.PushAsync(editor);
-                    };
-
-                    label.GestureRecognizers.Add(tap);
-                    StackLayout1.Children.Add(label);
+                        addToRightStackLayout(page1.text);
+                    }
+                    else
+                    {
+                        addToLeftStackLayout(page1.text);
+                    }
                 }
             };
-            
+
             Navigation.PushAsync(page1);
         }
-
     }
 }

@@ -12,6 +12,7 @@ namespace note
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page1 : ContentPage
     {
+        public string text = null;
         public Page1()
         {
             InitializeComponent();
@@ -23,7 +24,6 @@ namespace note
             TextHolder.Text = text = S;
         }
 
-        public string text = null;
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {

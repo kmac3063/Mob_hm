@@ -6,16 +6,21 @@
              mc:Ignorable="d"
              x:Class="note.Page1">
     <ContentPage.Content>
-        <Grid>
-            <Editor x:Name ="TextHolder" BackgroundColor="Blue">
+        <Grid Padding="10" 
+              BackgroundColor="#A8A8A8">
+            <Editor x:Name ="TextHolder" 
+                    BackgroundColor="#6FDB92"
+                    FontSize="25"
+                    TextColor="#034C0F"
+                    Text="asdasd">
             </Editor>
             <Button HorizontalOptions="End"
                     VerticalOptions="End"
-                    WidthRequest="40"
                     HeightRequest="40"
-                    CornerRadius="40"
-                    Margin="30"
-                    Clicked="Button_Clicked_1"/>
+                    CornerRadius="10"
+                    Margin="0, 0, 5, 20"
+                    Clicked="Button_Clicked_1"
+                    Text="Accept"/>
         </Grid>    
     </ContentPage.Content>
 </ContentPage>

@@ -6,16 +6,40 @@
              mc:Ignorable="d"
              x:Class="note.MainPage">
 
-    <Grid>
-        <StackLayout x:Name="StackLayout1">
-        </StackLayout>
+    <Grid Padding="10"
+          BackgroundColor="#A8A8A8">
+        <Label
+               HeightRequest="40"
+               Text="Заметки"
+               FontSize="30"
+               TextColor="Black"
+               VerticalOptions="Start"
+               HorizontalTextAlignment="Center" BackgroundColor="#64B772"/>
+        <Grid Margin="0, 40, 0, 0"
+            BackgroundColor="#99DF7F">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackLayout x:Name="leftStLt" Grid.Column="0" VerticalOptions="Start">
+                
+            </StackLayout>
+
+            <StackLayout x:Name="rightStLt" Grid.Column="1" VerticalOptions="Start">
+
+            </StackLayout>
+        </Grid>
+        
+        
         <Button HorizontalOptions="End"
                 VerticalOptions="End"
-                Margin = "30"
+                Margin = "20"
                 CornerRadius="40"
-                WidthRequest="40"
-                HeightRequest="40"
-                Clicked ="Button_Clicked_1"/>
+                WidthRequest="50"
+                HeightRequest="50"
+                Clicked ="Button_Clicked_1"
+                FontSize="20"
+                Text="+"/>
     </Grid>
 
 </ContentPage>
