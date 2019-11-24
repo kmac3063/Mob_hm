@@ -11,8 +11,7 @@
             <Editor x:Name ="TextHolder" 
                     BackgroundColor="#6FDB92"
                     FontSize="25"
-                    TextColor="#034C0F"
-                    Text="asdasd">
+                    TextColor="#034C0F">
             </Editor>
             <Button HorizontalOptions="End"
                     VerticalOptions="End"

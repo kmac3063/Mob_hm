@@ -16,32 +16,33 @@ namespace note
             InitializeComponent();
 
             var nodes = new List<string>();
-            var filePath = "note/data/nodes.txt";
+            
+            var docsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var filePath = Path.Combine(docsPath, "nodes.txt");
 
+            StreamReader f;
+            string nodesText;
             try
             {
-                var f = File.OpenText(filePath);
-                string nodesText = f.ReadToEnd() + Convert.ToChar(1); //  Фиктивный элемент
-
-                int j = 0;
-                for (int i = 1; i < nodesText.Length; i++)
-                {
-                    if (nodesText[i] == 1 || nodesText[i] == 2)
-                    {
-                        nodes.Add(nodesText.Substring(j, i - j));
-                        j = i;
-                    }
-
-                }
-
+                f = File.OpenText(filePath);
+                nodesText = f.ReadToEnd() + Convert.ToChar(1); //  Фиктивный элемент
                 f.Close();
             }
-            catch
+            catch{
+                nodesText = "";
+            }
+
+            int j = 0;
+            for (int i = 1; i < nodesText.Length; i++)
             {
+                if (nodesText[i] == 1 || nodesText[i] == 2)
+                {
+                    nodes.Add(nodesText.Substring(j, i - j));
+                    j = i;
+                }
 
             }
             
-
             var page = new MainPage(nodes);
             page.Disappearing += (a, b) =>
             {
@@ -54,13 +55,20 @@ namespace note
                         text += s;
                     }
 
-                    File.CreateText(filePath).Write(text);
+                    writeToFile(filePath, text);
                 }
             };
 
             MainPage = new NavigationPage(page);
         }
 
+        public async Task writeToFile(string filePath, string text)
+        {
+            using (var writer = File.CreateText(filePath))
+            {
+                await writer.WriteAsync(text);
+            }
+        }
         protected override void OnStart()
         {
             // Handle when your app starts

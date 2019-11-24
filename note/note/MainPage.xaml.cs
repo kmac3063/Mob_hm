@@ -57,7 +57,12 @@ namespace note
 
                 editor.Disappearing += (a2, b2) =>
                 {
-                    label.Text = editor.text;
+                    if (editor.text != null && editor.text != "")
+                    {
+                        nodes.Remove(Convert.ToChar(1) + label.Text);
+                        label.Text = editor.text;
+                        nodes.Add(Convert.ToChar(1) + label.Text);
+                    }
                 };
 
                 Navigation.PushAsync(editor);
@@ -77,8 +82,6 @@ namespace note
             frame.GestureRecognizers.Add(swipe);
 
             leftStLt.Children.Add(frame);
-
-            nodes.Add(Convert.ToChar(1) + str);
         }
 
         private void addToRightStackLayout(string str)
@@ -106,10 +109,12 @@ namespace note
 
                 editor.Disappearing += (a2, b2) =>
                 {
-                    label.Text = editor.text;
-                    //TO DO
-                    //Удаляем из нодес старое, загружаем новое
-                    //Найти верный путь для открытия файлов.
+                    if (editor.text != null && editor.text != "")
+                    {
+                        nodes.Remove(Convert.ToChar(2) + label.Text);
+                        label.Text = editor.text;
+                        nodes.Add(Convert.ToChar(2) + label.Text);
+                    }
                 };
 
                 Navigation.PushAsync(editor);
@@ -129,8 +134,6 @@ namespace note
             frame.GestureRecognizers.Add(swipe);
             
             rightStLt.Children.Add(frame);
-
-            nodes.Add(Convert.ToChar(2) + str);
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
@@ -139,20 +142,29 @@ namespace note
 
             page1.Disappearing += (a, b) =>
             {
-                if (page1.text != null)
+                if (page1.text != null && page1.text != "")
                 {
                     if (leftStLt.Height > rightStLt.Height)
                     {
                         addToRightStackLayout(page1.text);
+                        nodes.Add(Convert.ToChar(2) + page1.text);
                     }
                     else
                     {
                         addToLeftStackLayout(page1.text);
+                        nodes.Add(Convert.ToChar(1) + page1.text);
                     }
                 }
             };
 
             Navigation.PushAsync(page1);
+        }
+
+        private void Button_Clicked_2(object sender, EventArgs e)
+        {
+            nodes.Clear();
+            leftStLt.Children.Clear();
+            rightStLt.Children.Clear();
         }
     }
 }
