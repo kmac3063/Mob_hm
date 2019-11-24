@@ -45,7 +45,7 @@ namespace note
 
             Label label = new Label
             {
-                Text = formatted(str), //FORMATTED TEXT
+                Text = formatted(str),
                 FontSize = 20,
                 TextColor = Color.Black
             };
@@ -147,7 +147,7 @@ namespace note
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            var editor = new Page1();
+            var editor = new Page1("");
 
             editor.Disappearing += (a, b) =>
             {

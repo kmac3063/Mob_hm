@@ -5,6 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="note.Page1">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Сохранить" Clicked="Button_Clicked_1"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid Padding="10" 
               BackgroundColor="#A8A8A8">
@@ -13,13 +16,6 @@
                     FontSize="25"
                     TextColor="#034C0F">
             </Editor>
-            <Button HorizontalOptions="End"
-                    VerticalOptions="End"
-                    HeightRequest="40"
-                    CornerRadius="10"
-                    Margin="0, 0, 5, 20"
-                    Clicked="Button_Clicked_1"
-                    Text="Accept"/>
         </Grid>    
     </ContentPage.Content>
 </ContentPage>
