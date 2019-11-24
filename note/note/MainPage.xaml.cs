@@ -16,6 +16,8 @@ namespace note
         public MainPage(List<string> nds)
         {
             InitializeComponent();
+            nodes.AddRange(nds);
+
             foreach (var s in nds)
             {
                 if (s[0] == 1)
@@ -43,7 +45,7 @@ namespace note
 
             Label label = new Label
             {
-                Text = str,
+                Text = formatted(str), //FORMATTED TEXT
                 FontSize = 20,
                 TextColor = Color.Black
             };
@@ -53,15 +55,19 @@ namespace note
             var tap = new TapGestureRecognizer();
             tap.Tapped += (a1, b1) =>
             {
-                var editor = new Page1(label.Text);
+                var editor = new Page1(str);
 
                 editor.Disappearing += (a2, b2) =>
                 {
                     if (editor.text != null && editor.text != "")
                     {
-                        nodes.Remove(Convert.ToChar(1) + label.Text);
-                        label.Text = editor.text;
-                        nodes.Add(Convert.ToChar(1) + label.Text);
+
+                        nodes.Remove(Convert.ToChar(1) + str);
+
+                        str = editor.text;
+                        label.Text = formatted(str);
+
+                        nodes.Add(Convert.ToChar(1) + str);
                     }
                 };
 
@@ -96,7 +102,7 @@ namespace note
 
             Label label = new Label
             {
-                Text = str,
+                Text = formatted(str),
                 FontSize = 20,
                 TextColor = Color.Black
             };
@@ -105,15 +111,18 @@ namespace note
             var tap = new TapGestureRecognizer();
             tap.Tapped += (a1, b1) =>
             {
-                var editor = new Page1(label.Text);
+                var editor = new Page1(str);
 
                 editor.Disappearing += (a2, b2) =>
                 {
                     if (editor.text != null && editor.text != "")
                     {
-                        nodes.Remove(Convert.ToChar(2) + label.Text);
-                        label.Text = editor.text;
-                        nodes.Add(Convert.ToChar(2) + label.Text);
+                        nodes.Remove(Convert.ToChar(2) + str);
+
+                        str = editor.text;
+                        label.Text = formatted(str);
+
+                        nodes.Add(Convert.ToChar(2) + str);
                     }
                 };
 
@@ -138,26 +147,26 @@ namespace note
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            var page1 = new Page1();
+            var editor = new Page1();
 
-            page1.Disappearing += (a, b) =>
+            editor.Disappearing += (a, b) =>
             {
-                if (page1.text != null && page1.text != "")
+                if (editor.text != null && editor.text != "")
                 {
                     if (leftStLt.Height > rightStLt.Height)
                     {
-                        addToRightStackLayout(page1.text);
-                        nodes.Add(Convert.ToChar(2) + page1.text);
+                        addToRightStackLayout(editor.text);
+                        nodes.Add(Convert.ToChar(2) + editor.text);
                     }
                     else
                     {
-                        addToLeftStackLayout(page1.text);
-                        nodes.Add(Convert.ToChar(1) + page1.text);
+                        addToLeftStackLayout(editor.text);
+                        nodes.Add(Convert.ToChar(1) + editor.text);
                     }
                 }
             };
 
-            Navigation.PushAsync(page1);
+            Navigation.PushAsync(editor);
         }
 
         private void Button_Clicked_2(object sender, EventArgs e)
@@ -166,5 +175,31 @@ namespace note
             leftStLt.Children.Clear();
             rightStLt.Children.Clear();
         }
-    }
+
+        string formatted(string s_)
+        {
+            const int max_symb = 45;
+            const int max_str = 4;
+            
+            string s = "";
+
+            int t_symb = 0;
+            int t_str = 1;
+            foreach (var c in s_)
+            {
+                s += c;
+                
+                t_symb++;
+                t_str += Convert.ToInt32(c == '\n');
+
+                if (t_symb > max_symb || t_str > max_str)
+                {
+                    break;
+                }
+            }
+
+            return s;
+        }
+
+     }
 }
