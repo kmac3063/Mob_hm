@@ -20,25 +20,33 @@ namespace note
             var docsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var filePath = Path.Combine(docsPath, "nodes.txt");
 
+            //var reader = File.CreateText(filePath);
+
             StreamReader f;
             string nodesText;
             try
             {
                 f = File.OpenText(filePath);
-                nodesText = f.ReadToEnd() + Convert.ToChar(1); //  Фиктивный элемент
+                nodesText = f.ReadToEnd();
                 f.Close();
             }
             catch{
                 nodesText = "";
             }
 
+            int c = 0;
             int j = 0;
-            for (int i = 1; i < nodesText.Length; i++)
+            for (int i = 0; i < nodesText.Length; i++)
             {
-                if (nodesText[i] == 1 || nodesText[i] == 2)
+                if (nodesText[i] == 1)
+                    c++;
+
+                if (c == 2)
                 {
-                    nodes.Add(nodesText.Substring(j, i - j));
-                    j = i;
+                    nodes.Add(nodesText.Substring(j, i - j + 2));
+                    j = i + 2;
+                    c = 0;
+                    i++;
                 }
 
             }
