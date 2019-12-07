@@ -17,6 +17,7 @@ namespace note
         {
             InitializeComponent();
             nodes = new List<string>();
+            frames = new Dictionary<string, List<Frame>>();
 
             foreach (var s in nds)
             {
@@ -43,6 +44,8 @@ namespace note
         }
 
         public List<string> nodes;
+        public Dictionary<string, List<Frame>> frames;
+
         const char p = (char)1;
 
         private void addToStackLayout(string str, DateTime dt, int orient = -1)
@@ -89,6 +92,9 @@ namespace note
                     if (editor.text != null && editor.text != "")
                     {
                         nodes.Remove(str + p + dt + p + ToChar(inRightStack));
+                        if (frames.ContainsKey(str))
+                            frames[str].Remove(frame);
+
                         if (inRightStack)
                             rightStLt.Children.Remove(frame);
                         else
@@ -106,13 +112,16 @@ namespace note
                             leftStLt.Children.Add(frame);
 
                         nodes.Add(str + p + dt + p + ToChar(inRightStack));
+                        if (!frames.ContainsKey(str))
+                            frames.Add(str, new List<Frame>());
+                        frames[str].Add(frame);
                     }
                 };
 
                 Navigation.PushAsync(editor);
             };
             label.GestureRecognizers.Add(tap);
-
+            
             var pan = new PanGestureRecognizer();
             var startX = frame.X;
             pan.PanUpdated += (panSender, e) => 
@@ -134,6 +143,8 @@ namespace note
 
 
                             nodes.Remove(str + p + dt + p + ToChar(inRightStack));
+                            if (frames.ContainsKey(str))
+                                frames[str].Remove(frame);
                         }
                         break;
                     case GestureStatus.Completed:
@@ -149,6 +160,9 @@ namespace note
                 leftStLt.Children.Add(frame);
 
             nodes.Add(str + p + dt + p + ToChar(inRightStack));
+            if (!frames.ContainsKey(str))
+                frames.Add(str, new List<Frame>());
+            frames[str].Add(frame);
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
@@ -195,7 +209,7 @@ namespace note
                 
             }
 
-            return "(" + (t_symb - t_str) + ") " + s;
+            return "(" + (t_symb - t_str + 1) + ") " + s;
         }
 
         char ToChar(bool a)
@@ -203,6 +217,18 @@ namespace note
             if (a == true)
                 return (char)1;
             return (char)0;
+        }
+
+        private void searchEditor_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var text = searchEditor.Text;
+            foreach(var pair in frames) {
+                foreach (var v in pair.Value)
+                {
+                    v.IsVisible = pair.Key.Contains(text);
+                }
+            }
+
         }
     }
 }
